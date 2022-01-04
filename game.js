@@ -45,11 +45,13 @@ document.addEventListener('mousedown', mouseDown)
 window.addEventListener('resize', getOffset)
 
 function loop() {
+
   game.background()
 
   if (!game.paused) {
     game.punkte = game.parts.filter(p => p.org == p.pos && p.dir == 0).length
-    game.timer++
+    game.timer++ 
+    if (game.timer % 6 == 0)
     game.show()
     for (let part of game.parts)
       part.check() 
@@ -107,7 +109,7 @@ class Game {
   }
 
   background() {
-    ctx.clearRect(0, 0, 700, 500)
+    ctx.clearRect(0, 0, 700, 75)
     rect(498, 15, 150, 50, '#6495ED', true)
     let text = game.paused ? 'Zurueck' : 'Bild sehen'
     write(`Zeit:  ${Math.floor(game.timer / 60)} sec`, 55, 28, 20, 'gold', 'left')
